@@ -7,7 +7,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class GitRepoLocal(@Inject var repoDao: GitRepoDao) {
+class GitRepoLocal @Inject constructor(var repoDao: GitRepoDao) {
 
     fun insertRepos(repos: List<GitRepo>): Observable<Unit>? {
         return Observable.fromCallable {repoDao.insert(repos)}

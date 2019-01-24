@@ -16,9 +16,9 @@ import javax.inject.Inject
  * This boundary callback gets notified when user reaches to the edges of the list for example when
  * the database cannot provide any more data
  **/
-class GitRepoBoundaryCallback(
-    @Inject val service: GithubService,
-    @Inject val cache: GitRepoLocal
+class GitRepoBoundaryCallback @Inject constructor(
+    var service: GithubService,
+    var cache: GitRepoLocal
 ) : PagedList.BoundaryCallback<GitRepo>() {
 
     companion object {

@@ -13,9 +13,9 @@ import javax.inject.Inject
 /**
  * Repository class that works with local and remote data sources.
  */
-class GithubRepository(
-    @Inject val service: GithubService,
-    @Inject val cache: GitRepoLocal
+class GithubRepository @Inject constructor(
+    var service: GithubService,
+    var cache: GitRepoLocal
 ) {
 
     /**
