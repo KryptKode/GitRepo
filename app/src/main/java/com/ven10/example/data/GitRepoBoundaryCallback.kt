@@ -6,6 +6,7 @@ import androidx.paging.PagedList
 import com.ven10.example.api.GithubService
 import com.ven10.example.db.GitRepoLocal
 import com.ven10.example.model.GitRepo
+import com.ven10.example.utils.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -17,8 +18,8 @@ import javax.inject.Inject
  * the database cannot provide any more data
  **/
 class GitRepoBoundaryCallback @Inject constructor(
-    var service: GithubService,
-    var cache: GitRepoLocal
+        var service: GithubService,
+        var cache: GitRepoLocal
 ) : PagedList.BoundaryCallback<GitRepo>() {
 
     companion object {
@@ -28,13 +29,9 @@ class GitRepoBoundaryCallback @Inject constructor(
     private var lastRequestedPage = 1
 
     val disposable = CompositeDisposable()
-    private val _networkErrors = MutableLiveData<String>()
 
-    val networkErrors: LiveData<String>
-        get() = _networkErrors
 
-    private var isQueryInProgress = false
-
+    val networkState = MutableLiveData<NetworkState>()
 
     override fun onZeroItemsLoaded() {
         Timber.d(" onZeroItemsLoaded")
@@ -48,19 +45,18 @@ class GitRepoBoundaryCallback @Inject constructor(
     }
 
     private fun requestAndSaveData() {
-        if (isQueryInProgress) return
-        isQueryInProgress = true
+        if (networkState.value == NetworkState.LOADING) return
+        networkState.postValue(NetworkState.LOADING)
         disposable.add(service.searchRepos(lastRequestedPage, NETWORK_PAGE_SIZE)
-            .flatMap { cache.insertRepos(it.items) }
-            .subscribeOn(Schedulers.newThread()).subscribe({
-                lastRequestedPage++
-                isQueryInProgress = false
-            }, {
-                _networkErrors.postValue(it.message)
-                isQueryInProgress = false
-            }, {
-                isQueryInProgress = false
-            })
+                .flatMap { cache.insertRepos(it.items) }
+                .subscribeOn(Schedulers.newThread()).subscribe({
+                    lastRequestedPage++
+                    networkState.postValue(NetworkState.LOADED)
+                }, {
+                    networkState.postValue(NetworkState.error(it.message))
+                }, {
+                    networkState.postValue(NetworkState.LOADED)
+                })
         )
     }
 }

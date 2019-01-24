@@ -67,4 +67,5 @@ ext {
     timberVersion = "4.7.1"
 
     glideVersion = "4.8.0"
+    shimmerVersion = "0.3.0"
 }

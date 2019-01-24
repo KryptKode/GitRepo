@@ -9,7 +9,7 @@ import com.ven10.example.di.scopes.Ven10AppScope
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [RetrofitModule::class, Ven10DbModule::class])
+@Module(includes = [RetrofitModule::class, Ven10DbModule::class, ViewModelFactoryModule::class, ViewModelModule::class])
 abstract class Ven10AppModule {
 
     @Binds

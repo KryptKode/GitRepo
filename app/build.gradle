@@ -90,6 +90,9 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
 
+    //shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+
     // testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:runner:$runnerVersion"

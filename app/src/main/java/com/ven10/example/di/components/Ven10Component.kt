@@ -4,6 +4,7 @@ package com.ven10.example.di.components
 import com.ven10.example.App
 import com.ven10.example.di.modules.Ven10AppModule
 import com.ven10.example.di.modules.Ven10BuilderModule
+import com.ven10.example.di.modules.ViewModelFactoryModule
 import com.ven10.example.di.scopes.Ven10AppScope
 import dagger.BindsInstance
 import dagger.Component

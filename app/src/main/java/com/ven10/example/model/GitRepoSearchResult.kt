@@ -2,7 +2,7 @@ package com.ven10.example.model
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import io.reactivex.Flowable
+import com.ven10.example.utils.NetworkState
 
 /**
  * RepoSearchResult from a search, which contains LiveData<List<Repo>> holding query data,
@@ -10,5 +10,5 @@ import io.reactivex.Flowable
  */
 data class GitRepoSearchResult(
     val data: LiveData<PagedList<GitRepo>>,
-    val networkErrors: LiveData<String>
+    val networkErrors: LiveData<NetworkState>
 )
