@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -12,10 +12,15 @@
             android:layout_height="match_parent">
 
             <com.ven10.example.views.EmptyRecyclerView
-                android:id="@+id/rv_repos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_repo" />
+                    android:id="@+id/rv_repos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:fastScrollEnabled="true"
+                    app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                    app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                    app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                    app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
+                    tools:listitem="@layout/item_repo" />
 
             <include layout="@layout/empty_state"
                 android:id="@+id/empty_state"/>
