@@ -1,6 +1,5 @@
 package com.ven10.example
 
-import android.app.Application
 import com.squareup.leakcanary.LeakCanary
 import com.ven10.example.di.components.DaggerVen10Component
 import dagger.android.AndroidInjector

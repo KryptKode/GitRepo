@@ -1,19 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+<com.ven10.example.views.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/base_layout"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/base"
+        android:orientation="vertical">
 
 
-    <com.ven10.example.views.CircleImageView
+        <com.ven10.example.views.CircleImageView
+            android:id="@+id/img"
             android:layout_width="@dimen/img_size"
+            android:layout_height="@dimen/img_size"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp"
+            app:civ_fill_color="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_full_image" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8dp"
             android:layout_marginEnd="@dimen/dimen_8dp"
-            android:layout_marginTop="@dimen/dimen_8dp"
-            android:layout_height="@dimen/img_size"/>
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/img"
+            app:layout_constraintTop_toTopOf="@id/img"
+            tools:text="@tools:sample/lorem" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:textAppearance="?android:textAppearanceSmall"
+            app:layout_constraintStart_toEndOf="@id/img"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="@tools:sample/lorem" />
+
+
+        <com.ven10.example.views.SupportVectorDrawableTextView
+            android:id="@+id/tv_stars"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:drawablePadding="@dimen/dimen_8dp"
+            android:gravity="center|start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_date"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/tv_username"
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            app:tv_DrawableStartCompat="@drawable/ic_star"
+            tools:text="@tools:sample/us_zipcodes" />
+
+
+        <com.ven10.example.views.SupportVectorDrawableTextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:drawablePadding="@dimen/dimen_8dp"
+            android:gravity="center|start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_stars"
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            app:tv_DrawableStartCompat="@drawable/ic_time"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.ven10.example.views.MaterialRippleLayout>
