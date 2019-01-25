@@ -64,11 +64,11 @@ class DetailFragment @Inject constructor(): BaseFragment() {
 
 
 
-        val dateCreated = "${DateTimeUtils.formatDate(repo?.dateCreated ?: "")}, ${getString(R.string.at)} ${DateTimeUtils.formatTime(repo?.dateCreated?: "")} "
+        val dateCreated = "${DateTimeUtils.formatDate(repo?.dateCreated ?: "")}, ${getString(R.string.at)} ${DateTimeUtils.formatTime(repo?.dateCreated?: "")} (${DateTimeUtils.toTimeStampRelative(repo?.dateCreated?: "")}) "
         binding.tvCreated.text = dateCreated
 
 
-        val dateUpdated = "${DateTimeUtils.formatDate(repo?.dateUpdated ?: "")}, ${getString(R.string.at)} ${DateTimeUtils.formatTime(repo?.dateUpdated ?: "")} "
+        val dateUpdated = "${DateTimeUtils.formatDate(repo?.dateUpdated ?: "")}, ${getString(R.string.at)} ${DateTimeUtils.formatTime(repo?.dateUpdated ?: "")}"
         binding.tvUpdated.text = dateUpdated
 
         binding.includeDetail.tv_views.text = repo?.watchers.toString()
