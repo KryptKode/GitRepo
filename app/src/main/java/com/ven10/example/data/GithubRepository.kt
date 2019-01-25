@@ -6,6 +6,7 @@ import androidx.paging.PagedList
 import com.ven10.example.api.GithubService
 import com.ven10.example.db.GitRepoLocal
 import com.ven10.example.model.GitRepoSearchResult
+import com.ven10.example.utils.NetworkState
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -27,7 +28,7 @@ class GithubRepository @Inject constructor(
 
         // Get data source factory from the local cache
         val dataSourceFactory = cache.getRepos()
-
+        dataSourceFactory.create()
 
         val pagedListConfig = PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
@@ -44,19 +45,16 @@ class GithubRepository @Inject constructor(
 
 
         // Get the paged list
-        val data = LivePagedListBuilder(dataSourceFactory, pagedListConfig)
+        val builder = LivePagedListBuilder(dataSourceFactory, pagedListConfig)
                 .setBoundaryCallback(boundaryCallback)
-                .build()
+
+        val data = builder.build()
 
         // Get the network errors exposed by the boundary callback
         return GitRepoSearchResult(data, networkState)
     }
 
 
-    fun refresh(){
-        service.searchRepos(1, DATABASE_INITIAL_PAGE_SIZE)
-
-    }
 
 
     companion object {

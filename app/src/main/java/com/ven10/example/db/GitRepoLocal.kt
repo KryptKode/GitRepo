@@ -17,4 +17,10 @@ class GitRepoLocal @Inject constructor(var repoDao: GitRepoDao) {
     fun getRepos(): DataSource.Factory<Int, GitRepo> {
         return repoDao.getRepos()
     }
+
+    fun deleteAllRepos(): Observable<Unit>? {
+       return Observable.fromCallable{repoDao.deleteAll()}
+            .subscribeOn(Schedulers.io())
+    }
+
 }

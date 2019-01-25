@@ -76,8 +76,11 @@ class HomeFragment @Inject constructor() : BaseFragment() {
             binding.swipeRefreshLayout.isRefreshing = it == NetworkState.LOADING
         })
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
-        homeViewModel.blank.postValue("")
+        homeViewModel.getTrendingRepos()
 
     }
 

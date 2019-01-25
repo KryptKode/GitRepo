@@ -10,7 +10,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(var repository: GithubRepository):ViewModel(){
 
 
-    val blank = MutableLiveData<String>()
+    val blank = MutableLiveData<Unit>()
 
     val repoResult = Transformations.map(blank){
         repository.getRepos()
@@ -24,6 +24,10 @@ class HomeViewModel @Inject constructor(var repository: GithubRepository):ViewMo
         it.data
     }
 
+
+    fun getTrendingRepos(){
+        blank.value = null
+    }
 
 
 
