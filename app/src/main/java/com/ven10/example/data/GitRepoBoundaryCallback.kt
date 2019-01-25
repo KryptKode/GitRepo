@@ -47,9 +47,9 @@ class GitRepoBoundaryCallback @Inject constructor(
         requestAndSaveData()
     }
 
-    private fun requestAndSaveData() {
+     fun requestAndSaveData() {
         if (networkState.value == NetworkState.LOADING) return
-
+        Timber.d("Loading more data for page $lastRequestedPage")
         networkState.postValue(NetworkState.LOADING)
         disposable.add(service.searchRepos(lastRequestedPage, NETWORK_PAGE_SIZE)
                 .flatMap { cache.insertRepos(it.items) }

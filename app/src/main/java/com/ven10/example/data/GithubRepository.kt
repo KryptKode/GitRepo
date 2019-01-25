@@ -59,7 +59,7 @@ class GithubRepository @Inject constructor(
         // Get the network errors exposed by the boundary callback
         return GitRepoSearchResult(data, networkState,
             refresh = {
-                dataSourceFactory.create().invalidate()
+                boundaryCallback.requestAndSaveData()
             })
     }
 
