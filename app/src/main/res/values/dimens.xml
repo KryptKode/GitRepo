@@ -4,4 +4,5 @@
     <dimen name="detail_img_size">64dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
     <dimen name="detail_img_height">200dp</dimen>
+    <dimen name="dimen_4dp">4dp</dimen>
 </resources>
