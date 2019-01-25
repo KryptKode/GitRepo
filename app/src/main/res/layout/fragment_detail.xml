@@ -1,11 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/detail_img_height"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitXY"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.3"
+                    tools:ignore="ContentDescription" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/detail_img_height"
+                    android:background="@drawable/gradient"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8dp"
+                        android:layout_marginTop="@dimen/dimen_8dp"
+                        android:layout_marginEnd="@dimen/dimen_8dp"
+                        app:cardCornerRadius="@dimen/dimen_8dp"
+                        app:cardElevation="@dimen/dimen_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <com.ven10.example.views.SupportVectorDrawableTextView
+                                android:id="@+id/tv_profile_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary"
+                                android:padding="@dimen/dimen_8dp"
+                                android:text="@string/owner_profile"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/colorWhite"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_person" />
+
+                            <com.ven10.example.views.CircleImageView
+                                android:id="@+id/img"
+                                android:layout_width="@dimen/detail_img_size"
+                                android:layout_height="@dimen/detail_img_size"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:layout_marginBottom="@dimen/dimen_8dp"
+                                android:transitionName="@string/app_name"
+                                app:civ_border_color="@color/colorWhite"
+                                app:civ_border_width="1dp"
+                                app:civ_fill_color="@color/colorAccent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_profile_title"
+                                app:srcCompat="@drawable/ic_full_image" />
+
+
+                            <TextView
+                                android:id="@+id/tv_username"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+
+                                android:textAppearance="?android:textAppearanceLarge"
+                                android:textColor="@color/colorBlack"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/img"
+                                app:layout_constraintTop_toTopOf="@id/img"
+                                tools:text="@tools:sample/lorem" />
+
+
+                            <TextView
+                                android:id="@+id/tv_url"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/img"
+                                app:layout_constraintTop_toBottomOf="@id/tv_username"
+                                tools:text="@tools:sample/lorem" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_repo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8dp"
+                        android:layout_marginTop="@dimen/dimen_8dp"
+                        android:layout_marginEnd="@dimen/dimen_8dp"
+                        app:cardCornerRadius="@dimen/dimen_8dp"
+                        app:cardElevation="@dimen/dimen_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginBottom="@dimen/dimen_8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_profile">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <com.ven10.example.views.SupportVectorDrawableTextView
+                                android:id="@+id/tv_repo_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary"
+                                android:padding="@dimen/dimen_8dp"
+                                android:text="@string/repo_info"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/colorWhite"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_person" />
+
+
+                            <TextView
+                                android:id="@+id/tv_name_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="@string/repo_name"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_repo_title" />
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:textAppearance="?android:textAppearanceLarge"
+                                android:textColor="@color/colorBlack"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_name_label"
+                                tools:text="@tools:sample/lorem" />
+
+
+                            <TextView
+                                android:id="@+id/tv_description_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="@string/description"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+
+                            <TextView
+                                android:id="@+id/tv_description"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_description_label"
+                                tools:text="@tools:sample/lorem" />
+
+
+                            <TextView
+                                android:id="@+id/tv_repo_url_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="@string/link_to_repo"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_description" />
+
+
+                            <TextView
+                                android:id="@+id/tv_repo_url"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_repo_url_label"
+                                tools:text="@tools:sample/lorem" />
+
+
+                            <TextView
+                                android:id="@+id/tv_updated_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="@string/last_updated_on"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_repo_url" />
+
+
+                            <TextView
+                                android:id="@+id/tv_updated"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_updated_label"
+                                tools:text="@tools:sample/date/ddmmyy" />
+
+
+                            <TextView
+                                android:id="@+id/tv_created_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="@string/created_on"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_updated" />
+
+
+                            <TextView
+                                android:id="@+id/tv_created"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_created_label"
+                                tools:text="@tools:sample/date/ddmmyy" />
+
+
+                            <include
+                                android:id="@+id/include_detail"
+                                layout="@layout/include_detail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginEnd="@dimen/dimen_8dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_created" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>
+

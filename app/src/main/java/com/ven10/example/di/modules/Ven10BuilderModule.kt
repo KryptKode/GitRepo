@@ -1,7 +1,9 @@
 package com.ven10.example.di.modules
 
+import com.ven10.example.di.modules.ui.DetailModule
 import com.ven10.example.di.modules.ui.HomeModule
 import com.ven10.example.di.scopes.PerActivity
+import com.ven10.example.ui.detail.DetailActivity
 import com.ven10.example.ui.home.HomeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -13,6 +15,10 @@ abstract class Ven10BuilderModule {
 
     @ContributesAndroidInjector(modules = [HomeModule::class])
     abstract fun bindHomeActivity(): HomeActivity
+
+
+    @ContributesAndroidInjector(modules = [DetailModule::class])
+    abstract fun bindDetailActivity(): DetailActivity
 
 
 }

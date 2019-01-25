@@ -24,6 +24,7 @@
                 android:layout_marginStart="@dimen/dimen_8dp"
                 android:layout_marginTop="@dimen/dimen_8dp"
                 android:layout_marginEnd="@dimen/dimen_8dp"
+                android:transitionName="@string/app_name"
                 app:civ_border_color="@color/colorAccent"
                 app:civ_border_width="1dp"
                 app:civ_fill_color="@color/colorAccent"
@@ -92,7 +93,9 @@
                 app:tv_DrawableStartCompat="@drawable/ic_time"
                 tools:text="@tools:sample/date/ddmmyy" />
 
-            <include layout="@layout/item_repo_placeholder" android:id="@+id/item_repo_placeholder"/>
+            <include
+                android:id="@+id/item_repo_placeholder"
+                layout="@layout/item_repo_placeholder" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.ven10.example.views.MaterialRippleLayout>

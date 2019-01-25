@@ -1,9 +1,11 @@
 package com.ven10.example.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,10 +15,11 @@ import com.ven10.example.R
 import com.ven10.example.databinding.FragmentHomeBinding
 import com.ven10.example.model.GitRepo
 import com.ven10.example.ui.base.BaseFragment
+import com.ven10.example.ui.detail.DetailActivity
 import com.ven10.example.utils.NetworkState
+import com.ven10.example.views.CircleImageView
 import com.ven10.example.views.ItemDivider
 import com.ven10.example.views.SwipeRefreshLayoutHelper
-import timber.log.Timber
 import javax.inject.Inject
 
 class HomeFragment @Inject constructor() : BaseFragment() {
@@ -30,8 +33,15 @@ class HomeFragment @Inject constructor() : BaseFragment() {
     lateinit var homeViewModel: HomeViewModel
 
     private val listener = object : HomeItemListener {
-        override fun onItemClick(item: GitRepo) {
-            //TODO open detail activity
+        override fun onItemClick(item: GitRepo, img: View) {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("repo", item)
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(activity!!, img, img.transitionName).toBundle()
+                startActivity(intent, bundle)
+                return
+            }
+            startActivity(intent)
         }
     }
 
@@ -77,7 +87,7 @@ class HomeFragment @Inject constructor() : BaseFragment() {
         })
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.swipeRefreshLayout.isRefreshing = false
+            homeViewModel.refresh()
         }
 
         homeViewModel.getTrendingRepos()

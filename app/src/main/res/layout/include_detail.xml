@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/stats_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <com.ven10.example.views.SupportVectorDrawableTextView
+            android:id="@+id/tv_views"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tv_DrawableTopCompat="@drawable/ic_eye"
+            app:layout_constraintEnd_toStartOf="@id/tv_stars"
+            tools:text="@tools:sample/us_zipcodes"/>
+
+
+    <com.ven10.example.views.SupportVectorDrawableTextView
+            android:id="@+id/tv_stars"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tv_DrawableTopCompat="@drawable/ic_star"
+            app:layout_constraintStart_toEndOf="@id/tv_views"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_forks"
+            tools:text="@tools:sample/us_zipcodes"/>
+
+
+    <com.ven10.example.views.SupportVectorDrawableTextView
+            android:id="@+id/tv_forks"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tv_DrawableTopCompat="@drawable/ic_git_branch"
+            app:layout_constraintStart_toEndOf="@id/tv_stars"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@tools:sample/us_zipcodes"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

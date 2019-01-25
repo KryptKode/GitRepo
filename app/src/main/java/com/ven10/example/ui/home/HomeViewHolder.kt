@@ -30,11 +30,11 @@ class HomeViewHolder(val binding: ItemRepoBinding, val listener: HomeItemListene
                 .into(binding.img)
 
         binding.base.setOnClickListener {
-            listener.onItemClick(item)
+            listener.onItemClick(item, binding.img)
         }
 
         binding.baseLayout.setOnClickListener {
-            listener.onItemClick(item)
+            listener.onItemClick(item, binding.img)
         }
     }
 

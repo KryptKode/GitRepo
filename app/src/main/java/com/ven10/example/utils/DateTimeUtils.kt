@@ -8,7 +8,7 @@ object DateTimeUtils {
 
     fun formatDate( date: String): String{
         return SimpleDateFormat("EEE, MMM d, yyyy", Locale.getDefault())
-                .format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(date))
+                .format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(date))
     }
 
     fun toTimeStamp(date: String): Date? {
@@ -22,6 +22,6 @@ object DateTimeUtils {
 
     fun formatTime(time: String):String{
         return SimpleDateFormat("h:mm a", Locale.getDefault())
-                .format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(time))
+                .format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse(time))
     }
 }

@@ -1,10 +1,13 @@
 
 package com.ven10.example.data
 
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ven10.example.api.GithubService
 import com.ven10.example.db.GitRepoLocal
+import com.ven10.example.model.GitRepo
 import com.ven10.example.model.GitRepoSearchResult
 import com.ven10.example.utils.NetworkState
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +31,7 @@ class GithubRepository @Inject constructor(
 
         // Get data source factory from the local cache
         val dataSourceFactory = cache.getRepos()
-        dataSourceFactory.create()
+
 
         val pagedListConfig = PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
@@ -50,8 +53,12 @@ class GithubRepository @Inject constructor(
 
         val data = builder.build()
 
+
         // Get the network errors exposed by the boundary callback
-        return GitRepoSearchResult(data, networkState)
+        return GitRepoSearchResult(data, networkState,
+            refresh = {
+                dataSourceFactory.create().invalidate()
+            })
     }
 
 

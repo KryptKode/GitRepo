@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="img_size">48dp</dimen>
+    <dimen name="detail_img_size">64dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="detail_img_height">200dp</dimen>
 </resources>

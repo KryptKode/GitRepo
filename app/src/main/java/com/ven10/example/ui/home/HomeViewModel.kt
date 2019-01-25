@@ -16,6 +16,7 @@ class HomeViewModel @Inject constructor(var repository: GithubRepository):ViewMo
         repository.getRepos()
     }
 
+
     val networkState = Transformations.switchMap(repoResult){
         it.networkErrors
     }
@@ -24,6 +25,12 @@ class HomeViewModel @Inject constructor(var repository: GithubRepository):ViewMo
         it.data
     }
 
+
+
+    fun  refresh(){
+        val repos = repoResult?.value
+        repos?.refresh?.invoke()
+    }
 
     fun getTrendingRepos(){
         blank.value = null
