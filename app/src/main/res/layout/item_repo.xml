@@ -92,6 +92,7 @@
                 app:tv_DrawableStartCompat="@drawable/ic_time"
                 tools:text="@tools:sample/date/ddmmyy" />
 
+            <include layout="@layout/item_repo_placeholder" android:id="@+id/item_repo_placeholder"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.ven10.example.views.MaterialRippleLayout>

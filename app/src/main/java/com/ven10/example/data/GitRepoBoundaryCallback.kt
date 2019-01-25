@@ -46,6 +46,7 @@ class GitRepoBoundaryCallback @Inject constructor(
 
     private fun requestAndSaveData() {
         if (networkState.value == NetworkState.LOADING) return
+
         networkState.postValue(NetworkState.LOADING)
         disposable.add(service.searchRepos(lastRequestedPage, NETWORK_PAGE_SIZE)
                 .flatMap { cache.insertRepos(it.items) }
@@ -53,6 +54,7 @@ class GitRepoBoundaryCallback @Inject constructor(
                     lastRequestedPage++
                     networkState.postValue(NetworkState.LOADED)
                 }, {
+
                     networkState.postValue(NetworkState.error(it.message))
                 }, {
                     networkState.postValue(NetworkState.LOADED)

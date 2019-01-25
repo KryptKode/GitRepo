@@ -6,6 +6,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/base_layout"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -23,12 +24,13 @@
                     android:layout_marginStart="@dimen/dimen_8dp"
                     android:layout_marginTop="@dimen/dimen_8dp"
                     android:layout_marginEnd="@dimen/dimen_8dp"
-                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_color="@color/colorShimmer"
                     app:civ_border_width="1dp"
-                    app:civ_fill_color="@color/colorAccent"
+                    app:civ_fill_color="@color/colorShimmer"
+                    app:civ_circle_background_color="@color/colorShimmer"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_full_image"/>
+                    app:srcCompat="@color/colorShimmer"/>
 
             <TextView
                     android:id="@+id/tv_name"
@@ -37,6 +39,7 @@
                     android:layout_marginStart="@dimen/dimen_8dp"
                     android:layout_marginEnd="@dimen/dimen_8dp"
                     android:ellipsize="end"
+                    android:background="@color/colorShimmer"
                     android:singleLine="true"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textColor="@color/colorBlack"
@@ -44,19 +47,21 @@
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/img"
                     app:layout_constraintTop_toTopOf="@id/img"
-                    tools:text="@tools:sample/lorem"/>
+            />
 
 
             <TextView
                     android:id="@+id/tv_username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8dp"
                     android:layout_marginEnd="@dimen/dimen_8dp"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@color/colorShimmer"
                     android:textAppearance="?android:textAppearanceSmall"
                     app:layout_constraintStart_toEndOf="@id/img"
                     app:layout_constraintTop_toBottomOf="@id/tv_name"
-                    tools:text="@tools:sample/lorem"/>
+            />
 
 
             <com.ven10.example.views.SupportVectorDrawableTextView
@@ -72,7 +77,8 @@
                     app:layout_constraintStart_toStartOf="@id/tv_username"
                     app:layout_constraintTop_toBottomOf="@id/tv_username"
                     app:tv_DrawableStartCompat="@drawable/ic_star"
-                    tools:text="@tools:sample/us_zipcodes"/>
+                    android:text="@string/loading"
+            />
 
 
             <com.ven10.example.views.SupportVectorDrawableTextView
@@ -86,10 +92,11 @@
                     android:gravity="center|start"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/loading"
                     app:layout_constraintStart_toEndOf="@id/tv_stars"
                     app:layout_constraintTop_toBottomOf="@id/tv_username"
                     app:tv_DrawableStartCompat="@drawable/ic_time"
-                    tools:text="@tools:sample/date/ddmmyy"/>
+                    />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,7 @@
 package com.ven10.example.db
 
 import androidx.paging.DataSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.ven10.example.model.GitRepo
 
 
@@ -19,4 +16,7 @@ interface GitRepoDao {
 
     @Query("SELECT * FROM repos ORDER BY stars DESC, name ASC")
     fun getRepos(): DataSource.Factory<Int,GitRepo>
+
+    @Query("DELETE FROM repos")
+    fun deleteAll()
 }

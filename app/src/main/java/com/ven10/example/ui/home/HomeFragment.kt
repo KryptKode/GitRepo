@@ -15,6 +15,7 @@ import com.ven10.example.model.GitRepo
 import com.ven10.example.ui.base.BaseFragment
 import com.ven10.example.utils.NetworkState
 import com.ven10.example.views.ItemDivider
+import com.ven10.example.views.SwipeRefreshLayoutHelper
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -65,16 +66,18 @@ class HomeFragment @Inject constructor() : BaseFragment() {
         binding.rvRepos.setEmptyView(binding.emptyState.emptyView)
 
 
-        homeViewModel.getTrendingRepos().data.observe(this, Observer {
+        SwipeRefreshLayoutHelper().init(binding.swipeRefreshLayout)
+
+        homeViewModel.repoList.observe(this, Observer {
             adapter.submitList(it)
         })
 
-        homeViewModel.getTrendingRepos().networkErrors.observe(this, Observer {
+        homeViewModel.networkState.observe(this, Observer {
             binding.swipeRefreshLayout.isRefreshing = it == NetworkState.LOADING
-            Timber.e("Loading... %s", it == NetworkState.LOADING)
         })
 
 
+        homeViewModel.blank.postValue("")
 
     }
 
