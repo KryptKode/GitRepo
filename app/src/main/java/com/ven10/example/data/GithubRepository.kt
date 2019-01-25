@@ -1,6 +1,7 @@
 
 package com.ven10.example.data
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
@@ -20,7 +21,8 @@ import javax.inject.Inject
  */
 class GithubRepository @Inject constructor(
     var service: GithubService,
-    var cache: GitRepoLocal
+    var cache: GitRepoLocal,
+    var context: Context
 ) {
 
     /**
@@ -43,7 +45,7 @@ class GithubRepository @Inject constructor(
         // every new query creates a new BoundaryCallback
         // The BoundaryCallback will observe when the user reaches to the edges of
         // the list and update the database with extra data
-        val boundaryCallback = GitRepoBoundaryCallback(service, cache)
+        val boundaryCallback = GitRepoBoundaryCallback(service, cache, context)
         val networkState = boundaryCallback.networkState
 
 

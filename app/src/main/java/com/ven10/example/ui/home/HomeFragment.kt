@@ -5,18 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.ven10.example.R
 import com.ven10.example.databinding.FragmentHomeBinding
 import com.ven10.example.model.GitRepo
 import com.ven10.example.ui.base.BaseFragment
 import com.ven10.example.ui.detail.DetailActivity
 import com.ven10.example.utils.NetworkState
+import com.ven10.example.utils.Status
 import com.ven10.example.views.CircleImageView
 import com.ven10.example.views.ItemDivider
 import com.ven10.example.views.SwipeRefreshLayoutHelper
@@ -65,6 +69,8 @@ class HomeFragment @Inject constructor() : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         homeViewModel = ViewModelProviders.of(this, viewModeFactory)
                 .get(HomeViewModel::class.java)
 
@@ -84,6 +90,10 @@ class HomeFragment @Inject constructor() : BaseFragment() {
 
         homeViewModel.networkState.observe(this, Observer {
             binding.swipeRefreshLayout.isRefreshing = it == NetworkState.LOADING
+
+            if (it.status == Status.FAILED) {
+                showSnackBarError(it)
+            }
         })
 
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -92,6 +102,24 @@ class HomeFragment @Inject constructor() : BaseFragment() {
 
         homeViewModel.getTrendingRepos()
 
+    }
+
+    private fun showSnackBarError(it: NetworkState) {
+        val snackbar = Snackbar.make(binding.root,
+                it.msg.toString(), Snackbar.LENGTH_INDEFINITE)
+        val snackBarLayout = snackbar.getView() as Snackbar.SnackbarLayout
+        snackBarLayout.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
+        (snackBarLayout.findViewById<View>(com.google.android.material.R.id.snackbar_text) as TextView)
+                .setTextColor(context!!.resources.getColor(android.R.color.white))
+
+        (snackBarLayout.findViewById<View>(com.google.android.material.R.id.snackbar_action) as TextView)
+                .setTextColor(context!!.resources.getColor(android.R.color.white))
+
+        snackbar.setAction(getString(R.string.retry)) {
+            snackbar.dismiss()
+            homeViewModel.refresh()
+        }
+        snackbar.show()
     }
 
 
